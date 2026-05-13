@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "cp index.html app.js lessons.js style.css build/"
+  },
+  "private": true,
+  "version": "1.0.0",
+  "name": "ai-tutor-mvp"
+}
