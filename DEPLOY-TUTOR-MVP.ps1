@@ -44,9 +44,9 @@ $projectName = "ai-tutor-mvp"
 $body = @{
     "repo" = @{
         "repo_name" = "WildcatPeninsula/ai-tutor-mvp"
-        "production_branch" = "main"
     }
     "name" = $projectName
+    "production_branch" = "main"
     "env_vars" = @{ "NODE_VERSION" = "20" }
 } | ConvertTo-Json -Depth 4
 
