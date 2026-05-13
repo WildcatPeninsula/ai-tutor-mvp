@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tutor for Kids — Learn &amp; Play!</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-wrap">
+    <span class="logo-icon">🎓</span>
+    <span class="logo-text">AI Tutor</span>
+  </div>
+  <div class="header-stats" id="headerStats">
+    <span class="stat-badge">⭐ <b id="totalStars">0</b> Stars</span>
+    <span class="stat-badge">🏅 <b id="totalBadges">0</b> Badges</span>
+  </div>
+</header>
+
+<!-- MAIN SCREEN -->
+<main class="screen" id="screenHome">
+  <div class="hero">
+    <h1 class="hero-title">Hi, friend! 👋 Let's learn something new!</h1>
+    <p class="hero-sub">Pick a subject and we'll learn together — at your pace!</p>
+  </div>
+  <div class="subject-grid">
+    <div class="subject-card" onclick="startSubject('math')">
+      <div class="subject-icon">➕</div>
+      <div class="subject-name">Math</div>
+      <div class="subject-desc">Addition, subtraction, multiplication, division!</div>
+    </div>
+    <div class="subject-card" onclick="startSubject('reading')">
+      <div class="subject-icon">📖</div>
+      <div class="subject-name">Reading</div>
+      <div class="subject-desc">Stories, spelling, and reading fun!</div>
+    </div>
+    <div class="subject-card" onclick="startSubject('science')">
+      <div class="subject-icon">🔬</div>
+      <div class="subject-name">Science</div>
+      <div class="subject-desc">Discover how the world works!</div>
+    </div>
+  </div>
+  <div class="dashboard-link-wrap">
+    <button class="btn-secondary" onclick="showParentLogin()">👨‍👩‍👧 Parent Dashboard</button>
+  </div>
+</main>
+
+<!-- DIFFICULTY SELECT SCREEN -->
+<section class="screen" id="screenDifficulty" hidden>
+  <h2 class="section-title">How tricky should we make it? 🤔</h2>
+  <div class="difficulty-grid">
+    <div class="diff-card" onclick="startLesson('beginner')">
+      <div class="diff-icon">🌱</div>
+      <div class="diff-name">Easy</div>
+      <div class="diff-desc">New at this?</div>
+    </div>
+    <div class="diff-card" onclick="startLesson('intermediate')">
+      <div class="diff-icon">🌿</div>
+      <div class="diff-name">Medium</div>
+      <div class="diff-desc">Getting better!</div>
+    </div>
+    <div class="diff-card" onclick="startLesson('advanced')">
+      <div class="diff-icon">🌳</div>
+      <div class="diff-name">Hard</div>
+      <div class="diff-desc">Show me the challenge!</div>
+    </div>
+  </div>
+  <button class="btn-back" onclick="goHome()">← Back</button>
+</section>
+
+<!-- LESSON SCREEN -->
+<section class="screen" id="screenLesson" hidden>
+  <div class="lesson-header">
+    <button class="btn-back" onclick="goHome()">← Back</button>
+    <div class="lesson-top">
+      <span class="lesson-subject-badge" id="lessonSubjectBadge"></span>
+      <span class="lesson-stars">⭐ <span id="lessonStars">0</span></span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="tutor-area">
+    <div class="tutor-avatar">🤖</div>
+    <div class="tutor-bubble" id="tutorBubble"></div>
+  </div>
+  <div class="answer-area" id="answerArea"></div>
+  <div class="feedback-area" id="feedbackArea"></div>
+  <div class="lesson-actions" id="lessonActions" hidden>
+    <button class="btn-primary" onclick="nextStep()">Next! ➡️</button>
+  </div>
+</section>
+
+<!-- BADGE EARNED OVERLAY -->
+<div class="overlay" id="badgeOverlay" hidden>
+  <div class="badge-popup">
+    <div class="badge-popup-icon">🏅</div>
+    <h2>Badge Earned!</h2>
+    <p id="badgeName"></p>
+    <button class="btn-primary" onclick="closeBadge()">Awesome!</button>
+  </div>
+</div>
+
+<!-- PARENT LOGIN -->
+<section class="screen" id="screenParentLogin" hidden>
+  <div class="form-card">
+    <h2>👨‍👩‍👧 Parent Dashboard</h2>
+    <p class="form-sub">Enter a PIN to view your child's progress.</p>
+    <input type="password" id="pinInput" class="pin-input" maxlength="4" placeholder="****">
+    <button class="btn-primary" onclick="submitPin()">View Progress</button>
+    <p class="form-hint">Default PIN: 1234</p>
+  </div>
+  <button class="btn-back" onclick="goHome()" style="margin-top:1rem">← Back</button>
+</section>
+
+<!-- PARENT DASHBOARD -->
+<section class="screen" id="screenDashboard" hidden>
+  <h2 class="section-title">📊 Child's Progress</h2>
+  <div class="dash-card">
+    <div class="dash-stat"><div class="dash-num" id="dashLessons">0</div><div class="dash-label">Lessons</div></div>
+    <div class="dash-stat"><div class="dash-num" id="dashCorrect">0</div><div class="dash-label">Correct</div></div>
+    <div class="dash-stat"><div class="dash-num" id="dashStars">0</div><div class="dash-label">⭐ Stars</div></div>
+    <div class="dash-stat"><div class="dash-num" id="dashBadges">0</div><div class="dash-label">🏅 Badges</div></div>
+  </div>
+  <h3 class="section-title" style="font-size:1.1rem">Earned Badges</h3>
+  <div class="badge-grid" id="dashBadgesGrid"></div>
+  <h3 class="section-title" style="font-size:1.1rem;margin-top:1rem">Lesson History</h3>
+  <div id="dashHistory" class="dash-history"></div>
+  <button class="btn-back" onclick="goHome()" style="margin-top:1rem">← Back</button>
+</section>
+
+<!-- GAME SCREEN -->
+<section class="screen" id="screenGame" hidden>
+  <div class="game-header">
+    <button class="btn-back" onclick="goHome()">← Back</button>
+    <span class="lesson-stars">⭐ <span id="gameStars">0</span></span>
+  </div>
+  <h2 class="section-title">🎲 Quick Game!</h2>
+  <div id="gameContent" class="game-content"></div>
+  <div class="feedback-area" id="gameFeedback"></div>
+  <div class="lesson-actions" id="gameActions" hidden>
+    <button class="btn-primary" onclick="nextGameRound()">Play Again! 🔄</button>
+  </div>
+</section>
+
+<script src="lessons.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
