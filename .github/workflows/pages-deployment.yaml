@@ -1,5 +1,4 @@
 # Deploy to Cloudflare Pages on every push to main
-# Uses wrangler to upload the build/ folder to the ai-tutor-mvp project
 
 on:
   push:
@@ -19,15 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Install Wrangler
-        run: npm install -g wrangler
-
       - name: Deploy to Cloudflare Pages
         run: |
-          wrangler pages deploy build \
-            --project-name=ai-tutor-mvp \
-            --api-token=$CLOUDFLARE_API_TOKEN \
-            --account-id=$CLOUDFLARE_ACCOUNT_ID
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          npm install -g wrangler@latest
+          wrangler pages deploy build --project-name=ai-tutor-mvp --api-token=${{ secrets.CLOUDFLARE_API_TOKEN }} --account-id=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
