@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Us Build Better Tutoring — Quick 2-Minute Survey</title>
+<meta name="description" content="Tell us what you'd pay for AI tutoring that adapts to your child. 2 minutes. No email required. Your answer shapes the product.">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#333;line-height:1.6;overflow-x:hidden;background:#fafafa}
+.container{max-width:720px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;padding:60px 20px 40px}
+.hero h1{font-size:clamp(24px,4vw,34px);font-weight:700;margin-bottom:12px;line-height:1.2}
+.hero p{font-size:clamp(15px,2.5vw,18px);max-width:560px;margin:0 auto;opacity:.92}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:20px;font-size:13px;margin-top:16px}
+.survey-card{background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(0,0,0,.07);padding:40px 32px;margin:32px auto;max-width:720px}
+.survey-card h2{font-size:20px;font-weight:700;color:#333;margin-bottom:8px}
+.survey-card .sub{font-size:14px;color:#777;margin-bottom:28px}
+.question{margin-bottom:32px;padding-bottom:28px;border-bottom:1px solid #eee}
+.question:last-of-type{border-bottom:none}
+.question label{display:block;font-weight:600;font-size:15px;margin-bottom:14px;color:#333}
+.question .hint{font-size:12px;color:#999;margin-top:6px}
+.options{display:flex;flex-direction:column;gap:8px}
+.option{display:flex;align-items:center;padding:14px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .15s;font-size:15px}
+.option:hover{border-color:#667eea;background:#f8f7ff}
+.option input{display:none}
+.option .radio{width:20px;height:20px;border:2px solid #ccc;border-radius:50%;margin-right:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.option input:checked ~ .radio{border-color:#667eea;background:#667eea}
+.option input:checked ~ .radio::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%}
+.option input:checked ~ .opt-text{font-weight:600;color:#667eea}
+.option input:checked ~ .opt-text .opt-price{color:#667eea}
+.option input:checked{border-color:#667eea;background:#f0eeff}
+.opt-price{font-weight:600;color:#333}
+.radio-btn{display:flex;align-items:center;padding:14px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .15s;font-size:15px}
+.radio-btn:hover{border-color:#667eea;background:#f8f7ff}
+.radio-btn input{display:none}
+.radio-btn .radio{width:20px;height:20px;border:2px solid #ccc;border-radius:50%;margin-right:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.radio-btn input:checked ~ .radio{border-color:#667eea;background:#667eea}
+.radio-btn input:checked ~ .radio::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%}
+.radio-btn input:checked{border-color:#667eea;background:#f0eeff}
+.text-input{width:100%;padding:14px 16px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .15s}
+.text-input:focus{border-color:#667eea}
+.text-area{width:100%;padding:14px 16px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;font-family:inherit;outline:none;min-height:80px;resize:vertical;transition:border-color .15s}
+.text-area:focus{border-color:#667eea}
+.progress-bar{display:flex;gap:6px;margin-bottom:28px}
+.progress-step{flex:1;height:4px;background:#e0e0e0;border-radius:2px;transition:background .2s}
+.progress-step.done{background:#667eea}
+.btn-primary{display:inline-block;padding:16px 40px;border-radius:10px;font-size:16px;font-weight:600;border:none;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;width:100%}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(102,102,234,.35)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-secondary{display:inline-block;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;background:transparent;color:#667eea;margin-top:12px;width:100%;text-align:center}
+.btn-secondary:hover{text-decoration:underline}
+.thanks{text-align:center;padding:60px 20px}
+.thanks h2{font-size:28px;font-weight:700;color:#333;margin-bottom:12px}
+.thanks p{font-size:16px;color:#666;margin-bottom:24px}
+.thanks .emoji{font-size:48px;margin-bottom:20px}
+.price-highlights{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.price-tag{background:#f0eeff;color:#667eea;padding:6px 12px;border-radius:6px;font-size:13px;font-weight:600}
+@media(max-width:600px){.survey-card{padding:28px 20px;margin:20px auto}.hero{padding:40px 16px 30px}.options{gap:6px}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Help us build the tutoring tool parents actually want</h1>
+<p>2 minutes. No email. No sales pitch. Just honest pricing feedback so we don't waste your money building the wrong thing.</p>
+<div class="tag">🎓 Sponsored by ThinkMate — free AI tutoring for kids</div>
+</section>
+
+<!-- SURVEY -->
+<div id="surveyWrap" style="display:none">
+<div class="container">
+<div class="progress-bar" id="progressBar">
+<div class="progress-step done"></div>
+<div class="progress-step"></div>
+<div class="progress-step"></div>
+<div class="progress-step"></div>
+<div class="progress-step"></div>
+<div class="progress-step"></div>
+</div>
+
+<!-- Q1: Parent status -->
+<div class="survey-card" id="q1">
+<h2>Question 1 of 6</h2>
+<p class="sub">Tell us about your situation</p>
+<div class="question" style="border:none;margin:0;padding:0">
+<label>Which best describes you?</label>
+<div class="options">
+<label class="option"><input type="radio" name="parent" value="parent_k12"><span class="radio"></span><span class="opt-text">I'm a parent with a child ages 8-12</span></label>
+<label class="option"><input type="radio" name="parent" value="parent_other"><span class="radio"></span><span class="opt-text">I'm a parent with a child under 8 or over 12</span></label>
+<label class="option"><input type="radio" name="parent" value="educator"><span class="radio"></span><span class="opt-text">I'm a teacher/homeschool educator</span></label>
+<label class="option"><input type="radio" name="parent" value="grandparent"><span class="radio"></span><span class="opt-text">I'm a grandparent/guardian</span></label>
+<label class="option"><input type="radio" name="parent" value="other"><span class="radio"></span><span class="opt-text">Other</span></label>
+</div>
+</div>
+<button class="btn-primary" onclick="nextQ(1)">Continue →</button>
+</div>
+
+<!-- Q2: Current spending -->
+<div class="survey-card" id="q2" style="display:none">
+<h2>Question 2 of 6</h2>
+<p class="sub">Understanding your current tutoring spend</p>
+<div class="question" style="border:none;margin:0;padding:0">
+<label>How much do you currently spend per month on tutoring or educational apps for your child?</label>
+<div class="options">
+<label class="option"><input type="radio" name="spend" value="zero"><span class="radio"></span><span class="opt-text">Nothing — we don't use paid tutoring</span></label>
+<label class="option"><input type="radio" name="spend" value="0_20"><span class="radio"></span><span class="opt-text">$0-$20/month (free apps or cheap subscriptions)</span></label>
+<label class="option"><input type="radio" name="spend" value="20_50"><span class="radio"></span><span class="opt-text">$20-$50/month</span></label>
+<label class="option"><input type="radio" name="spend" value="50_100"><span class="radio"></span><span class="opt-text">$50-$100/month</span></label>
+<label class="option"><input type="radio" name="spend" value="100_plus"><span class="radio"></span><span class="opt-text">$100+/month</span></label>
+</div>
+<div class="question" style="border:none;margin-top:20px;padding-top:20px">
+<label>If a one-time payment replaced your monthly subscription, what would feel like a no-brainer?</label>
+<div class="price-highlights">
+<span class="price-tag">$9.99</span>
+<span class="price-tag">$19.99</span>
+<span class="price-tag">$29.99</span>
+<span class="price-tag">$49.99</span>
+</div>
+<div class="options" style="margin-top:12px">
+<label class="option"><input type="radio" name="wtp_one" value="5"><span class="radio"></span><span class="opt-text">Under $10 — that's dinner money</span></label>
+<label class="option"><input type="radio" name="wtp_one" value="10_20"><span class="radio"></span><span class="opt-text">$10-$19 — fair for what I get</span></label>
+<label class="option"><input type="radio" name="wtp_one" value="20_30"><span class="radio"></span><span class="opt-text">$20-$29 — I'd pay that for real results</span></label>
+<label class="option"><input type="radio" name="wtp_one" value="30_50"><span class="radio"></span><span class="opt-text">$30-$49 — quality education is worth it</span></label>
+<label class="option"><input type="radio" name="wtp_one" value="50_plus"><span class="radio"></span><span class="opt-text">$50+ — as long as it works</span></label>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:8px">
+<button class="btn-primary" style="flex:1" onclick="nextQ(2)">Continue →</button>
+<button class="btn-secondary" onclick="prevQ(2)">← Back</button>
+</div>
+</div>
+
+<!-- Q3: Pricing model preference -->
+<div class="survey-card" id="q3" style="display:none">
+<h2>Question 3 of 6</h2>
+<p class="sub">Pricing model matters</p>
+<div class="question" style="border:none;margin:0;padding:0">
+<label>Which pricing model would you prefer?</label>
+<div class="options">
+<label class="option"><input type="radio" name="model" value="once"><span class="radio"></span><span class="opt-text">One-time payment (own it forever)</span></label>
+<label class="option"><input type="radio" name="model" value="monthly"><span class="radio"></span><span class="opt-text">Monthly subscription (cancel anytime)</span></label>
+<label class="option"><input type="radio" name="model" value="freemium"><span class="radio"></span><span class="opt-text">Free with paid premium features</span></label>
+<label class="option"><input type="radio" name="model" value="any"><span class="radio"></span><span class="opt-text">I don't care — quality matters more</span></label>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:8px">
+<button class="btn-primary" style="flex:1" onclick="nextQ(3)">Continue →</button>
+<button class="btn-secondary" onclick="prevQ(3)">← Back</button>
+</div>
+</div>
+
+<!-- Q4: Competitor comparison -->
+<div class="survey-card" id="q4" style="display:none">
+<h2>Question 4 of 6</h2>
+<p class="sub">What have you tried?</p>
+<div class="question" style="border:none;margin:0;padding:0">
+<label>Have you tried any of these before? (Check all that apply)</label>
+<div class="options">
+<label class="option"><input type="checkbox" name="competitor" value="khan"><span class="radio"></span><span class="opt-text">Khan Academy (free)</span></label>
+<label class="option"><input type="checkbox" name="competitor" value="outschool"><span class="radio"></span><span class="opt-text">Outschool</span></label>
+<label class="option"><input type="checkbox" name="competitor" value="kumon"><span class="radio"></span><span class="opt-text">Kumon</span></label>
+<label class="option"><input type="checkbox" name="competitor" value="abcmouse"><span class="radio"></span><span class="opt-text">ABCmouse / IXL / similar</span></label>
+<label class="option"><input type="checkbox" name="competitor" value="tutor"><span class="radio"></span><span class="opt-text">Live human tutor</span></label>
+<label class="option"><input type="checkbox" name="competitor" value="nothing"><span class="radio"></span><span class="opt-text">None — we haven't tried paid tutoring</span></label>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:8px">
+<button class="btn-primary" style="flex:1" onclick="nextQ(4)">Continue →</button>
+<button class="btn-secondary" onclick="prevQ(4)">← Back</button>
+</div>
+</div>
+
+<!-- Q5: What matters most -->
+<div class="survey-card" id="q5" style="display:none">
+<h2>Question 5 of 6</h2>
+<p class="sub">What would make you say yes?</p>
+<div class="question" style="border:none;margin:0;padding:0">
+<label>What matters most to you when choosing an educational tool for your child?</label>
+<div class="options">
+<label class="option"><input type="radio" name="priority" value="price"><span class="radio"></span><span class="opt-text">Price — keep it as low as possible</span></label>
+<label class="option"><input type="radio" name="priority" value="results"><span class="radio"></span><span class="opt-text">Real results — my kid needs to learn</span></label>
+<label class="option"><input type="radio" name="priority" value="engagement"><span class="radio"></span><span class="opt-text">My kid will actually use it (not hate it)</span></label>
+<label class="option"><input type="radio" name="priority" value="privacy"><span class="radio"></span><span class="opt-text">Privacy — no data collection on my child</span></label>
+<label class="option"><input type="radio" name="priority" value="simplicity"><span class="radio"></span><span class="opt-text">Simple — no learning curve for me or my kid</span></label>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:8px">
+<button class="btn-primary" style="flex:1" onclick="nextQ(5)">Continue →</button>
+<button class="btn-secondary" onclick="prevQ(5)">← Back</button>
+</div>
+</div>
+
+<!-- Q6: Open-ended -->
+<div class="survey-card" id="q6" style="display:none">
+<h2>Question 6 of 6</h2>
+<p class="sub">One last thing</p>
+<div class="question" style="border:none;margin:0;padding:0">
+<label>What's the one thing your current tutoring solution does <em>wrong</em> that you wish it did right?</label>
+<textarea class="text-area" name="open_ended" placeholder="E.g., 'My kid gets bored after 10 minutes', 'Too expensive for what it delivers', 'It doesn't adapt to their level...'"></textarea>
+<div class="hint">Optional but helpful — this goes directly to the builder.</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:8px">
+<button class="btn-primary" style="flex:1" onclick="submitSurvey()">Submit My Answer ✓</button>
+<button class="btn-secondary" onclick="prevQ(6)">← Back</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- THANKS -->
+<div class="container" id="thanks" style="display:none">
+<div class="survey-card thanks">
+<div class="emoji">🙏</div>
+<h2>Thank you!</h2>
+<p>Your feedback helps us build something parents actually want to pay for. We'll send you an update when ThinkMate is ready.</p>
+<p style="font-size:13px;color:#999;margin-top:16px">P.S. Try ThinkMate free: <a href="https://44a37d23.ai-tutor-mvp.pages.dev" style="color:#667eea;font-weight:600">44a37d23.ai-tutor-mvp.pages.dev</a></p>
+</div>
+</div>
+
+<script>
+let currentQ = 1;
+const totalQ = 6;
+
+function updateProgress(step) {
+  const bars = document.querySelectorAll('.progress-step');
+  bars.forEach((bar, i) => {
+    bar.classList.toggle('done', i < step);
+  });
+}
+
+function showCard(id) {
+  document.querySelectorAll('.survey-card').forEach(c => c.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+function nextQ(from) {
+  // Validate current question has a selection
+  const qData = getQData(from);
+  if (!qData.valid) {
+    alert('Please select an option before continuing.');
+    return;
+  }
+  
+  const next = from + 1;
+  showCard('q' + next);
+  updateProgress(next);
+  currentQ = next;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prevQ(from) {
+  const prev = from - 1;
+  showCard('q' + prev);
+  updateProgress(prev);
+  currentQ = prev;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getQData(qNum) {
+  switch(qNum) {
+    case 1:
+      const p = document.querySelector('input[name="parent"]:checked');
+      return { valid: !!p, data: { parent: p ? p.value : null } };
+    case 2:
+      const s = document.querySelector('input[name="spend"]:checked');
+      const w = document.querySelector('input[name="wtp_one"]:checked');
+      return { valid: !!s && !!w, data: { spend: s ? s.value : null, wtp_one: w ? w.value : null } };
+    case 3:
+      const m = document.querySelector('input[name="model"]:checked');
+      return { valid: !!m, data: { model: m ? m.value : null } };
+    case 4:
+      const checked = document.querySelectorAll('input[name="competitor"]:checked');
+      const values = Array.from(checked).map(c => c.value);
+      return { valid: values.length > 0, data: { competitors: values } };
+    case 5:
+      const pr = document.querySelector('input[name="priority"]:checked');
+      return { valid: !!pr, data: { priority: pr ? pr.value : null } };
+    case 6:
+      const text = document.querySelector('textarea[name="open_ended"]').value;
+      return { valid: true, data: { open_ended: text } };
+    default:
+      return { valid: false, data: {} };
+  }
+}
+
+function submitSurvey() {
+  const allData = {
+    parent: document.querySelector('input[name="parent"]:checked')?.value,
+    spend: document.querySelector('input[name="spend"]:checked')?.value,
+    wtp_one: document.querySelector('input[name="wtp_one"]:checked')?.value,
+    model: document.querySelector('input[name="model"]:checked')?.value,
+    competitors: Array.from(document.querySelectorAll('input[name="competitor"]:checked')).map(c => c.value),
+    priority: document.querySelector('input[name="priority"]:checked')?.value,
+    open_ended: document.querySelector('textarea[name="open_ended"]')?.value
+  };
+
+  // Store response
+  try {
+    const responses = JSON.parse(localStorage.getItem('wtp_responses') || '[]');
+    responses.push({ ...allData, timestamp: new Date().toISOString() });
+    localStorage.setItem('wtp_responses', JSON.stringify(responses));
+  } catch(e) {}
+
+  // In production, you'd POST to a backend. For now, log and store locally.
+  console.log('WTP Survey response:', allData);
+
+  // Show thanks
+  document.getElementById('surveyWrap').style.display = 'none';
+  document.getElementById('thanks').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Start
+document.getElementById('surveyWrap').style.display = 'block';
+updateProgress(1);
+</script>
+
+</body>
+</html>
