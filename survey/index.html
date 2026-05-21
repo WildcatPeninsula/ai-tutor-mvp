@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Us Build Better Tutoring for Kids | ThinkMate Survey</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#333;line-height:1.6;background:#f8f9fb}
+.survey-container{max-width:640px;margin:0 auto;padding:20px}
+.survey-header{text-align:center;padding:40px 20px 20px}
+.survey-header h1{font-size:clamp(24px,4vw,32px);color:#667eea;margin-bottom:12px}
+.survey-header p{font-size:15px;color:#666;max-width:500px;margin:0 auto}
+.survey-card{background:#fff;border-radius:12px;padding:32px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:24px}
+.question{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #eee}
+.question:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.question label{display:block;font-weight:600;font-size:15px;color:#444;margin-bottom:10px}
+.question .q-hint{font-size:13px;color:#999;margin-bottom:8px}
+.radio-group,.check-group{display:flex;flex-direction:column;gap:8px}
+.radio-group label,.check-group label{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:14px;font-weight:400;transition:all .15s}
+.radio-group label:hover,.check-group label:hover{border-color:#667eea;background:#f5f3ff}
+.radio-group input,.check-group input{margin-top:2px;accent-color:#667eea;flex-shrink:0}
+.check-group label{align-items:flex-start}
+.text-input{width:100%;padding:12px 14px;border:1px solid #e0e0e0;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .15s}
+.text-input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,.12)}
+textarea.text-input{min-height:80px;resize:vertical}
+.survey-submit{text-align:center;padding:10px 0 60px}
+.btn-submit{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:16px 48px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(102,126,234,.35)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.thank-you{text-align:center;padding:60px 20px;display:none}
+.thank-you h1{font-size:28px;color:#667eea;margin-bottom:12px}
+.thank-you p{color:#666;font-size:15px}
+.footer{text-align:center;padding:20px;font-size:12px;color:#aaa}
+.footer a{color:#667eea}
+</style>
+</head>
+<body>
+
+<div class="survey-container" id="surveyForm">
+  <div class="survey-header">
+    <h1>Help Us Build Better Tutoring for Kids</h1>
+    <p>ThinkMate is a browser-based AI tutor for kids ages 8-12. We're building it and want to know what you'd pay for it. This takes about 3 minutes.</p>
+  </div>
+
+  <div class="survey-card">
+    <!-- Q1: Child's age -->
+    <div class="question">
+      <label>1. How old is your child (or the child this would be for)?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="age" value="8"><span>8 years old</span></label>
+        <label><input type="radio" name="age" value="9"><span>9 years old</span></label>
+        <label><input type="radio" name="age" value="10"><span>10 years old</span></label>
+        <label><input type="radio" name="age" value="11"><span>11 years old</span></label>
+        <label><input type="radio" name="age" value="12"><span>12 years old</span></label>
+        <label><input type="radio" name="age" value="other"><span>Other (please specify)</span></label>
+      </div>
+    </div>
+
+    <!-- Q2: Current pain point -->
+    <div class="question">
+      <label>2. What's the biggest challenge you face tutoring your child?</label>
+      <div class="check-group">
+        <label><input type="checkbox" name="pain" value="time"><span>I don't have enough time to tutor daily</span></label>
+        <label><input type="checkbox" name="pain" value="patience"><span>I lose patience when explaining the same thing repeatedly</span></label>
+        <label><input type="checkbox" name="pain" value="confidence"><span>I'm not confident I'm teaching it correctly</span></label>
+        <label><input type="checkbox" name="pain" value="engagement"><span>My child gets bored with worksheets/apps too quickly</span></label>
+        <label><input type="checkbox" name="pain" value="cost"><span>Existing tutoring apps or services are too expensive</span></label>
+        <label><input type="checkbox" name="pain" value="other"><span>Other</span></label>
+      </div>
+    </div>
+
+    <!-- Q3: Current spending -->
+    <div class="question">
+      <label>3. How much do you currently spend on tutoring resources per month?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="spend" value="0"><span>$0 (nothing at all)</span></label>
+        <label><input type="radio" name="spend" value="1-5"><span>$1-5</span></label>
+        <label><input type="radio" name="spend" value="5-10"><span>$5-10</span></label>
+        <label><input type="radio" name="spend" value="10-20"><span>$10-20</span></label>
+        <label><input type="radio" name="spend" value="20+"><span>$20+</span></label>
+        <label><input type="radio" name="spend" value="unsure"><span>Unsure</span></label>
+      </div>
+    </div>
+
+    <!-- Q4: Willingness to pay (Van Westendorp-style) -->
+    <div class="question">
+      <label>4. Imagine this works really well. Your child loves it and their math/reading improves. What would be a FAIR price for a one-time purchase?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="fair" value="free"><span>Free (I'd use it but won't pay)</span></label>
+        <label><input type="radio" name="fair" value="5"><span>$5</span></label>
+        <label><input type="radio" name="fair" value="9"><span>$9</span></label>
+        <label><input type="radio" name="fair" value="10"><span>$10</span></label>
+        <label><input type="radio" name="fair" value="15"><span>$15</span></label>
+        <label><input type="radio" name="fair" value="20"><span>$20</span></label>
+        <label><input type="radio" name="fair" value="30"><span>$30+</span></label>
+      </div>
+    </div>
+
+    <!-- Q5: Max willing to pay -->
+    <div class="question">
+      <label>5. If your child asked for it and they're truly struggling -- what's the MOST you'd pay to make it happen?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="max" value="0"><span>I wouldn't pay anything</span></label>
+        <label><input type="radio" name="max" value="5"><span>Up to $5</span></label>
+        <label><input type="radio" name="max" value="10"><span>Up to $10</span></label>
+        <label><input type="radio" name="max" value="15"><span>Up to $15</span></label>
+        <label><input type="radio" name="max" value="20"><span>Up to $20</span></label>
+        <label><input type="radio" name="max" value="25"><span>Up to $25</span></label>
+        <label><input type="radio" name="max" value="50"><span>Up to $50</span></label>
+        <label><input type="radio" name="max" value="100"><span>Up to $100</span></label>
+      </div>
+    </div>
+
+    <!-- Q6: Monthly vs one-time -->
+    <div class="question">
+      <label>6. Which sounds better to you?</label>
+      <div class="check-group">
+        <label><input type="radio" name="model" value="one-time-9"><span>One-time $9.99 -- own it forever</span></label>
+        <label><input type="radio" name="model" value="one-time-15"><span>One-time $14.99 -- own it forever</span></label>
+        <label><input type="radio" name="model" value="monthly-3"><span>$3/month -- cancel anytime</span></label>
+        <label><input type="radio" name="model" value="monthly-5"><span>$5/month -- cancel anytime</span></label>
+      </div>
+    </div>
+
+    <!-- Q7: Would they actually buy -->
+    <div class="question">
+      <label>7. Would you download and try a free version right now if I sent you a link?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="try" value="yes"><span>Yes, absolutely</span></label>
+        <label><input type="radio" name="try" value="maybe"><span>Maybe -- depends on how it looks</span></label>
+        <label><input type="radio" name="try" value="no"><span>No thanks</span></label>
+      </div>
+    </div>
+
+    <!-- Q8: Email for beta -->
+    <div class="question">
+      <label>8. Want a heads-up when the free trial goes live?</label>
+      <input type="email" class="text-input" name="email" placeholder="your@email.com (optional)">
+    </div>
+
+    <!-- Q9: Additional thoughts -->
+    <div class="question">
+      <label>9. Anything else? What would make or break this for your family?</label>
+      <textarea class="text-input" name="feedback" placeholder="It could be a feature, a concern, a pricing idea, or just your experience..."></textarea>
+    </div>
+  </div>
+
+  <div class="survey-submit">
+    <button class="btn-submit" id="submitBtn" type="button">Submit Survey</button>
+  </div>
+</div>
+
+<div class="thank-you" id="thankYou">
+  <h1>Thank You! 🙏</h1>
+  <p>Your response matters. We'll use this to build something your family actually wants.</p>
+</div>
+
+<div class="footer">
+  <p>ThinkMate by Wildcat Peninsula · <a href="https://tutor.wildcatpeninsula.com">tutor.wildcatpeninsula.com</a></p>
+</div>
+
+<script>
+// Simple WTP data collection - stores to localStorage + sends to webhook if configured
+const surveyData = {};
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+  // Validate required fields
+  const age = document.querySelector('input[name="age"]:checked');
+  const spend = document.querySelector('input[name="spend"]:checked');
+  const fair = document.querySelector('input[name="fair"]:checked');
+  const max = document.querySelector('input[name="max"]:checked');
+  const model = document.querySelector('input[name="model"]:checked');
+  const tryIt = document.querySelector('input[name="try"]:checked');
+
+  if (!age || !spend || !fair || !max || !model || !tryIt) {
+    alert('Please answer all required questions above.');
+    return;
+  }
+
+  // Collect all data
+  const pains = [];
+  document.querySelectorAll('input[name="pain"]:checked').forEach(cb => pains.push(cb.value));
+
+  surveyData = {
+    age: age.value,
+    ageOther: age.value === 'other' ? (document.querySelector('input[name="ageOther"]')?.value || null) : null,
+    painPoints: pains,
+    currentSpend: spend.value,
+    fairPrice: fair.value,
+    maxPrice: max.value,
+    pricingModel: model.value,
+    wouldTry: tryIt.value,
+    email: document.querySelector('input[name="email"]').value || null,
+    feedback: document.querySelector('textarea[name="feedback"]').value || null,
+    timestamp: new Date().toISOString(),
+    source: window.location.search.split('source=')[1] || 'unknown',
+    referrer: document.referrer || 'direct'
+  };
+
+  // Store locally
+  const responses = JSON.parse(localStorage.getItem('thinkmate_wtp_responses') || '[]');
+  responses.push(surveyData);
+  localStorage.setItem('thinkmate_wtp_responses', JSON.stringify(responses));
+
+  // Send to webhook if configured (configurable endpoint)
+  const webhookUrl = ''; // Set your webhook URL here (e.g., n8n, make.com, Airtable)
+  if (webhookUrl) {
+    try {
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(surveyData),
+        keepalive: true
+      });
+    } catch(e) { /* non-critical */ }
+  }
+
+  // Show thank you
+  document.getElementById('surveyForm').style.display = 'none';
+  document.getElementById('thankYou').style.display = 'block';
+});
+</script>
+</body>
+</html>
